@@ -55,9 +55,9 @@
         comment: "Diagnsotic Results: Pods are running but monitoring agent is down"
         api_token: "{{ api_token }}"
 
-    - name: Set Tags - Automation State Pending
+    - name: Set Tags - Automation Successful
       bigpanda.incident.add_tag:
         tag_id: "Automation State"
-        tag_value: "Finished"
+        tag_value: "Successful"
         incident_id: "{{ incident_id }}"
         api_token: "{{ api_token }}"

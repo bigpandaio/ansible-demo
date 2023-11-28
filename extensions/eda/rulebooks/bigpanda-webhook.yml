@@ -5,7 +5,7 @@
   sources:
     - ansible.eda.webhook:
         host: 0.0.0.0
-        port: 6000
+        port: 5000
   rules:
     - name: Demo Part 1 - Execute Assign to BigPanda UUID and Check Pods Playbook
       condition: |
@@ -17,23 +17,4 @@
          is not selectattr('check', 'eq', 'Trace Alert') | list | count = 0)
       action:
         run_playbook:
-          name: playbooks/check_pods.yml
-
-    - name: Demo Part 2 - Execute Remediation Steps on the Monitoring Agent
-      condition: |
-        event.payload.incident is defined and 
-        event.payload.incident.resolved == false and 
-        event.payload.incident.active == true and 
-        (event.payload.incident.alerts |
-         selectattr('check', 'eq', 'Trace Alert') | list | count > 0)
-      action:
-        run_playbook:
-          name: playbooks/restart_agent.yml
-
-    - name: Demo Part 3 - Execute Cleanup Playbook
-      condition: |
-        event.payload.incident is defined and 
-        event.payload.incident.status == "ok"
-      action:
-        run_playbook:
-          name: playbooks/cleanup.yml
+          name: playbooks/[PLAYBOOK-NAME-HERE].yml
