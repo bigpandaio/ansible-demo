@@ -1,19 +1,19 @@
 # rulebook.yml
 ---
-- name: BigPanda Webhook Rulebook
+- name: BigPanda Webhook Rulebook 2
   hosts: all
   sources:
     - ansible.eda.webhook:
         host: 0.0.0.0
         port: 5000
   rules:
-    - name: Demo Part 1 - Execute Assign to BigPanda UUID and Check Pods Playbook
+    - name: Demo Part 1 - [NAME-OF-STEP-HERE]
       condition: |
         event.payload.incident is defined and 
         event.payload.incident.resolved == false and 
         event.payload.incident.active == true and 
         (event.payload.incident.alerts |
-         selectattr('check', 'eq', 'Agent Not Receiving Data') | list | count > 0 and
+         is not selectattr('check', 'eq', 'Agent Not Receiving Data') | list | count > 0 or
          is not selectattr('check', 'eq', 'Trace Alert') | list | count = 0)
       action:
         run_playbook:
