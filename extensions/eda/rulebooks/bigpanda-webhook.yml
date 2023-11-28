@@ -12,8 +12,8 @@
         event.payload.incident is defined and 
         event.payload.incident.resolved == false and 
         event.payload.incident.active == true and 
-        (event.payload.incident.alerts is selectattr('check', 'eq', 'Agent Not Receiving Data') and
-         event.payload.incident.alerts is not selectattr('check', 'eq', 'Trace Alert'))
+        (event.payload.incident.alerts is selectattr('check', ==, 'Agent Not Receiving Data') and
+         event.payload.incident.alerts is not selectattr('check', ==, 'Trace Alert'))
       action:
         run_playbook:
           name: playbooks/check_pods.yml
