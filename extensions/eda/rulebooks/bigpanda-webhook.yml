@@ -10,7 +10,10 @@
     - name: Demo Part 1 - Execute Assign to BigPanda UUID and Check Pods Playbook
       condition: |
         event.payload.incident is defined and 
-        event.payload.incident.resolved == false
+        event.payload.incident.resolved == false and 
+        event.payload.incident.active == true and 
+        event.payload.incident.alerts is selectattr('check', '==', 'Agent Not Receiving Data') and
+        event.payload.incident.alerts is not selectattr('check', '==', 'Trace Alert')
       action:
         run_job_template:
           name: "1. Check Pods"
@@ -20,8 +23,8 @@
       condition: |
         event.payload.incident is defined and 
         event.payload.incident.resolved == false and 
-        event.payload.incident.active == true
-
+        event.payload.incident.active == true and 
+        event.payload.incident.alerts is selectattr('check', '==', 'Trace Alert')
       action:
         run_job_template:
           name: "2. Restart Agent"
@@ -30,7 +33,7 @@
     - name: Demo Part 3 - Execute Cleanup Playbook
       condition: |
         event.payload.incident is defined and 
-        event.payload.incident.status == "Critical"
+        event.payload.incident.status == "ok"
       action:
         run_job_template:
           name: "3. Cleanup"
