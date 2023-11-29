@@ -24,7 +24,7 @@
         event.meta.payload.incident is defined and 
         event.meta.payload.incident.resolved == false and 
         event.meta.payload.incident.active == true and 
-        event.meta.payload.incident.alerts is selectattr('check', '==', 'Trace Alert')
+# event.meta.payload.incident.alerts is selectattr('check', '==', 'Trace Alert')
       action:
         run_job_template:
           name: "2. Restart Agent"
@@ -33,7 +33,7 @@
     - name: Demo Part 3 - Execute Cleanup Playbook
       condition: |
         event.meta.payload.incident is defined and 
-        event.meta.payload.incident.status == "ok"
+        event.meta.payload.incident.status == "Critical"
       action:
         run_job_template:
           name: "3. Cleanup"
