@@ -12,8 +12,8 @@
         event.meta.meta.payload.incident is defined and 
         event.meta.payload.incident.resolved == false and 
         event.meta.payload.incident.active == true and 
-        event.meta.payload.incident.alerts.tags is selectattr('check', '==', 'Agent Not Receiving Data') and
-        event.meta.payload.incident.alerts.tags is not selectattr('check', '==', 'Trace Alert')
+        event.meta.payload.incident.alerts is selectattr('check', '==', 'Agent Not Receiving Data') and
+        event.meta.payload.incident.alerts is not selectattr('check', '==', 'Trace Alert')
       action:
         run_job_template:
           name: "1. Check Pods"
@@ -23,8 +23,8 @@
       condition: |
         event.meta.payload.incident is defined and 
         event.meta.payload.incident.resolved == false and 
-        event.meta.payload.incident.active.tags == true and 
-        event.meta.payload.incident.alerts.tags is selectattr('check', '==', 'Trace Alert')
+        event.meta.payload.incident.active == true and 
+        event.meta.payload.incident.alerts is selectattr('check', '==', 'Trace Alert')
       action:
         run_job_template:
           name: "2. Restart Agent"
