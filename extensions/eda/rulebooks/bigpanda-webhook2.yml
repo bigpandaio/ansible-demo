@@ -15,5 +15,6 @@
         event.payload.incident.alerts is not selectattr('check','==', 'Agent Not Receiving Data') and
         event.payload.incident.alerts is not selectattr('check', '==', 'Trace Alert')
       action:
-        run_playbook:
-          name: playbooks/cleanup.yml
+        run_job_template:
+          name: "1. Check Pods"
+          organization: Default

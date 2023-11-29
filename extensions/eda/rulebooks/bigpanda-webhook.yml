@@ -15,8 +15,9 @@
         event.payload.incident.alerts is selectattr('check', '==', 'Agent Not Receiving Data') and
         event.payload.incident.alerts is not selectattr('check', '==', 'Trace Alert')
       action:
-        run_playbook:
-          name: playbooks/check_pods.yml
+        run_job_template:
+          name: "1. Check Pods"
+          organization: Default
 
     - name: Demo Part 2 - Execute Remediation Steps on the Monitoring Agent
       condition: |
@@ -25,13 +26,15 @@
         event.payload.incident.active == true and 
         event.payload.incident.alerts is selectattr('check', '==', 'Trace Alert')
       action:
-        run_playbook:
-          name: playbooks/restart_agent.yml
+        run_job_template:
+          name: "2. Restart Agent"
+          organization: Default
 
     - name: Demo Part 3 - Execute Cleanup Playbook
       condition: |
         event.payload.incident is defined and 
         event.payload.incident.status == "ok"
       action:
-        run_playbook:
-          name: playbooks/cleanup.yml
+        run_job_template:
+          name: "3. Cleanup"
+          organization: Default
