@@ -12,8 +12,7 @@
         event.payload.incident is defined and 
         event.payload.incident.resolved == false and 
         event.payload.incident.active == true and 
-        event.payload.incident.alerts is selectattr('check', '==', 'Agent Not Receiving Data') and
-        event.payload.incident.alerts is not selectattr('check', '==', 'Trace Alert')
+        event.payload.incident.alerts is selectattr('check', 'contains', 'ERROR Http.status code:500')
       action:
         run_job_template:
           name: "1. Check Pods"
