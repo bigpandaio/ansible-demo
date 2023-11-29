@@ -9,11 +9,11 @@
   rules:
     - name: Demo Part 1 - Execute Assign to BigPanda UUID and Check Pods Playbook
       condition: |
-        event.payload.incident is defined and 
-        event.payload.incident.resolved == false and 
-        event.payload.incident.active == true and 
-        event.payload.incident.alerts is selectattr('check', '==', 'Agent Not Receiving Data') and
-        event.payload.incident.alerts is not selectattr('check', '==', 'Trace Alert')
+        event.meta.meta.payload.incident is defined and 
+        event.meta.meta.payload.incident.resolved == false and 
+        event.meta.meta.payload.incident.active == true and 
+        event.meta.payload.incident.alerts.tags is selectattr('check', '==', 'Agent Not Receiving Data') and
+        event.meta.payload.incident.alerts.tags is not selectattr('check', '==', 'Trace Alert')
       action:
         run_job_template:
           name: "1. Check Pods"
@@ -21,10 +21,10 @@
 
     - name: Demo Part 2 - Execute Remediation Steps on the Monitoring Agent
       condition: |
-        event.payload.incident is defined and 
-        event.payload.incident.resolved == false and 
-        event.payload.incident.active == true and 
-        event.payload.incident.alerts is selectattr('check', '==', 'Trace Alert')
+        event.meta.payload.incident is defined and 
+        event.meta.payload.incident.resolved == false and 
+        event.meta.payload.incident.active.tags == true and 
+        event.meta.payload.incident.alerts.tags is selectattr('check', '==', 'Trace Alert')
       action:
         run_job_template:
           name: "2. Restart Agent"
@@ -32,8 +32,8 @@
 
     - name: Demo Part 3 - Execute Cleanup Playbook
       condition: |
-        event.payload.incident is defined and 
-        event.payload.incident.status == "ok"
+        event.meta.payload.incident is defined and 
+        event.meta.payload.incident.status == "ok"
       action:
         run_job_template:
           name: "3. Cleanup"
