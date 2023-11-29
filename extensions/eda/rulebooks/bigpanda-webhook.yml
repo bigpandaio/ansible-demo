@@ -10,8 +10,8 @@
     - name: Demo Part 1 - Execute Assign to BigPanda UUID and Check Pods Playbook
       condition: |
         event.meta.meta.payload.incident is defined and 
-        event.meta.meta.payload.incident.resolved == false and 
-        event.meta.meta.payload.incident.active == true and 
+        event.meta.payload.incident.resolved == false and 
+        event.meta.payload.incident.active == true and 
         event.meta.payload.incident.alerts.tags is selectattr('check', '==', 'Agent Not Receiving Data') and
         event.meta.payload.incident.alerts.tags is not selectattr('check', '==', 'Trace Alert')
       action:
