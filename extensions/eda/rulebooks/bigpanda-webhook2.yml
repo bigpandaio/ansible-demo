@@ -18,3 +18,7 @@
         run_job_template:
           name: "1. Check Pods"
           organization: Default
+    - name: Log Event
+      condition: event.meta is defined
+      action:
+        debug:

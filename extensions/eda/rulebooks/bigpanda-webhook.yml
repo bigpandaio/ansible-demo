@@ -38,3 +38,7 @@
         run_job_template:
           name: "3. Cleanup"
           organization: Default
+    - name: Log Event
+      condition: event.meta is defined
+      action:
+        debug:
