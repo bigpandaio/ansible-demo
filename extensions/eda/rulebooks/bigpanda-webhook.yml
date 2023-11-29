@@ -20,7 +20,7 @@
       condition: |
         event.payload.incident is defined and 
         event.payload.incident.resolved == false and 
-        event.payload.incident.active == true and 
+        event.payload.incident.active == true
 
       action:
         run_job_template:
