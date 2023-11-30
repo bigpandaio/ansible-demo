@@ -11,8 +11,7 @@
       condition: |
         event.payload.incident is defined and 
         event.payload.incident.resolved == false and 
-        event.payload.incident.active == true and 
-        event.payload.incident.alerts is selectattr('check', 'contains', 'ERROR Http.status code:500')
+        event.payload.incident.active == true
       action:
         run_job_template:
           name: "1. Check Pods"
@@ -22,8 +21,7 @@
       condition: |
         event.payload.incident is defined and 
         event.payload.incident.resolved == false and 
-        event.payload.incident.active == true and 
-        event.payload.incident.alerts is selectattr('check', '==', 'Trace Alert')
+        event.payload.incident.active == true
       action:
         run_job_template:
           name: "2. Restart Agent"
