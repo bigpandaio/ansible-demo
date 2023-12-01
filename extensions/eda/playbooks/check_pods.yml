@@ -41,7 +41,7 @@
 
     - name: Set Tags - Automation Job URL
       bigpanda.incident.add_tag:
-        nvironment_id: "{{ environment_id }}"
+        environment_id: "{{ environment_id }}"
         tag_id: "automation_job_url_1"
         tag_value: "{{ automation_job_url }}"
         incident_id: "{{ incident_id }}"
