@@ -34,7 +34,7 @@
     - name: Demo Part 3 - Execute Cleanup Playbook
       condition: |
         event.payload.incident is defined and 
-        event.payload.incident.status == "ok"
+        event.payload.incident.status == "Warning"
       action:
         run_job_template:
           name: "Cleanup"
