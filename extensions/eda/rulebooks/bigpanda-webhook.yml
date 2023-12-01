@@ -13,7 +13,7 @@
         event.payload.incident.resolved == false and 
         event.payload.incident.active == true and
         event.payload.incident.alerts is not search("trace.internal.writer", ingnorecase=true) and
-        event.payload.metadata.event_types.0 is search("incident#updated", ingnorecase=true)
+        event.payload.metadata.event_types is search("incident#updated", ingnorecase=true)
       action:
         run_job_template:
           name: "Check Pods"
