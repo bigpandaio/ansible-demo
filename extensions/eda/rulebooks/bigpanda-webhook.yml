@@ -9,10 +9,10 @@
   rules:
     - name: Demo Part 1 - Execute Assign to BigPanda UUID and Check Pods Playbook
       condition: |
-        event.payload.incident is defined
-        event.payload.incident.resolved == false 
-        event.payload.incident.active == true
-        event.payload.incident.alerts is not search("trace.internal.writer", ingnorecase=true)
+        event.payload.incident is defined and
+        event.payload.incident.resolved == false and 
+        event.payload.incident.active == true and
+        event.payload.incident.alerts is not search("trace.internal.writer", ingnorecase=true) and
         event.payload.metadata.event_types.0 is search("incident#updated", ingnorecase=true)
       action:
         run_job_template:
