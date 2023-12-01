@@ -13,7 +13,7 @@
       bigpanda.incident.comment:
         environment_id: "{{ environment_id }}"
         incident_id: "{{ incident_id }}"
-        comment: "Assigning to Biggy"
+        comment: "Assigning to Biggy an Automated User - Please do not take ownership of Incident until after Automation has attempted to diagnose or remediate"
         api_token: "{{ api_token }}"
 
     - name: Set Tags - Automation State Pending
@@ -28,7 +28,7 @@
       bigpanda.incident.comment:
         environment_id: "{{ environment_id }}"
         incident_id: "{{ incident_id }}"
-        comment: "Automation job started. Purpose: DIAGNOSTIC"
+        comment: "Automation job started. {{ playbook_name }} ID{{ execution_id }} Purpose: DIAGNOSTIC If you need to see the execution please click here: {{ automation_job_url }}"
         api_token: "{{ api_token }}"
 
     - name: Set Tags - Automation Playbook, Job URL, and Purpose
