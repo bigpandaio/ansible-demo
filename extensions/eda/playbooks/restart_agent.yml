@@ -30,7 +30,7 @@
       bigpanda.incident.add_tag:
         environment_id: "{{ environment_id }}"
         tag_id: "automation_playbook"
-        tag_value: "{{ playbook_name }} - ID{{ execution_id }}"
+        tag_value: "{{ playbook_name }} ID{{ execution_id }}"
         incident_id: "{{ incident_id }}"
         api_token: "{{ api_token }}"
 
