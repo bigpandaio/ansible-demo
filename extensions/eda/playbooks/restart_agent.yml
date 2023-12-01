@@ -40,10 +40,3 @@
         incident_id: "{{ incident_id }}"
         comment: "Restarting the monitoring agent"
         api_token: "{{ api_token }}"
-
-    - name: Successful Resolution
-      bigpanda.incident.resolve:
-        environment_id: "{{ environment_id }}"
-        incident_id: "{{ incident_id }}"
-        resolution_comment: "Restarting the monitoring agent"
-        api_token: "{{ api_token }}"
