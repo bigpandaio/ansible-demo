@@ -8,13 +8,12 @@
         port: 6000
   rules:
     - name: Demo Part 1 - Execute Assign to BigPanda UUID and Check Pods Playbook
-      condition:
-        all:
-          - event.payload.incident is defined
-          - event.payload.incident.resolved == false 
-          - event.payload.incident.active == true
-          - event.payload.incident.alerts is not search("trace.internal.writer", ingnorecase=true)
-          - event.payload.metadata.event_types.0 is search("incident#updated", ingnorecase=true)
+      condition: |
+        event.payload.incident is defined
+        event.payload.incident.resolved == false 
+        event.payload.incident.active == true
+        event.payload.incident.alerts is not search("trace.internal.writer", ingnorecase=true)
+        event.payload.metadata.event_types.0 is search("incident#updated", ingnorecase=true)
       action:
         run_job_template:
           name: "Check Pods"
