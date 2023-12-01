@@ -11,7 +11,8 @@
       condition: |
         event.payload.incident is defined and 
         event.payload.incident.resolved == false and 
-        event.payload.incident.active == true
+        event.payload.incident.active == true and
+        event.payload.metadata.event == "incident#updated"
       action:
         run_job_template:
           name: "1. Check Pods"
@@ -21,7 +22,8 @@
       condition: |
         event.payload.incident is defined and 
         event.payload.incident.resolved == false and 
-        event.payload.incident.active == true
+        event.payload.incident.active == true and
+        event.payload.metadata.event == "incident#updated"
       action:
         run_job_template:
           name: "2. Restart Agent"
@@ -30,7 +32,8 @@
     - name: Demo Part 3 - Execute Cleanup Playbook
       condition: |
         event.payload.incident is defined and 
-        event.payload.incident.status == "ok"
+        event.payload.incident.status == "ok" and
+        event.payload.metadata.event == "incident#updated"
       action:
         run_job_template:
           name: "3. Cleanup"
