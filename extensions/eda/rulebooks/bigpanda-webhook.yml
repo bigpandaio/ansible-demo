@@ -24,7 +24,8 @@
         event.payload.incident is defined and 
         event.payload.incident.resolved == false and 
         event.payload.incident.active == true and
-        event.payload.incident.alerts is search("trace.internal.writer", ignorecase=true)
+        event.payload.incident.alerts is search("trace.internal.writer", ignorecase=true) and
+        event.payload.metadata.event_types is search("incident#updated", ignorecase=true)
       action:
         run_job_template:
           name: "Restart Agent"
