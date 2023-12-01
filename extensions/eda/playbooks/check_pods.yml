@@ -19,7 +19,7 @@
     - name: Set Tags - Automation State Pending
       bigpanda.incident.add_tag:
         environment_id: "{{ environment_id }}"
-        tag_id: "Automation State"
+        tag_id: "automation_state"
         tag_value: "Pending"
         incident_id: "{{ incident_id }}"
         api_token: "{{ api_token }}"
@@ -65,7 +65,7 @@
     - name: Set Tags - Automation Successful
       bigpanda.incident.add_tag:
         environment_id: "{{ environment_id }}"
-        tag_id: "Automation State"
+        tag_id: "automation_state"
         tag_value: "Successful"
         incident_id: "{{ incident_id }}"
         api_token: "{{ api_token }}"
