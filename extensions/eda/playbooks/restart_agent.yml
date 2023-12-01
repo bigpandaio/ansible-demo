@@ -7,7 +7,7 @@
       bigpanda.incident.comment:
         environment_id: "{{ environment_id }}"
         incident_id: "{{ incident_id }}"
-        comment: "Automation job started. {{ playbook_name }} ID{{ execution_id }} Purpose: REMEDIATION If you need to see the execution please click here: {{ automation_job_url }}""
+        comment: "Automation job started. {{ playbook_name }} ID{{ execution_id }} Purpose: REMEDIATION If you need to see the execution please click here: {{ automation_job_url }}"
         api_token: "{{ api_token }}"
 
     - name: Set Tags - Automation Purpose
