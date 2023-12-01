@@ -13,7 +13,7 @@
     - name: Set Tags - Automation Job URL
       bigpanda.incident.add_tag:
         environment_id: "{{ environment_id }}"      
-        tag_id: "automation_job_url"
+        tag_id: "automation_job_url_1"
         tag_value: "{{ automation_job_url }}"
         incident_id: "{{ incident_id }}"
         api_token: "{{ api_token }}"
@@ -29,7 +29,7 @@
     - name: Set Tags - Automation Playbook and Job URL
       bigpanda.incident.add_tag:
         environment_id: "{{ environment_id }}"
-        tag_id: "automation_playbook"
+        tag_id: "automation_playbook_1"
         tag_value: "{{ playbook_name }} ID{{ execution_id }}"
         incident_id: "{{ incident_id }}"
         api_token: "{{ api_token }}"
