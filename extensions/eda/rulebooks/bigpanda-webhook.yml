@@ -14,7 +14,7 @@
         event.payload.incident.active == true
       action:
         run_job_template:
-          name: "1. Check Pods"
+          name: "Check Pods"
           organization: Default
 
     - name: Demo Part 2 - Execute Remediation Steps on the Monitoring Agent
@@ -24,7 +24,7 @@
         event.payload.incident.active == true
       action:
         run_job_template:
-          name: "2. Restart Agent"
+          name: "Restart Agent"
           organization: Default
 
     - name: Demo Part 3 - Execute Cleanup Playbook
@@ -33,7 +33,7 @@
         event.payload.incident.status == "ok"
       action:
         run_job_template:
-          name: "3. Cleanup"
+          name: "Cleanup"
           organization: Default
     - name: Log Event
       condition: event.meta is defined
