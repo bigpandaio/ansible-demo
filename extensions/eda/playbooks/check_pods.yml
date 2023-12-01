@@ -11,12 +11,14 @@
 
     - name: Add Comment to Incident
       bigpanda.incident.comment:
+        environment_id: "{{ environment_id }}"
         incident_id: "{{ incident_id }}"
         comment: "Assigning to Biggy"
         api_token: "{{ api_token }}"
 
     - name: Set Tags - Automation State Pending
       bigpanda.incident.add_tag:
+        environment_id: "{{ environment_id }}"
         tag_id: "Automation State"
         tag_value: "Pending"
         incident_id: "{{ incident_id }}"
@@ -24,12 +26,14 @@
 
     - name: Add Comment - Job Started
       bigpanda.incident.comment:
+        environment_id: "{{ environment_id }}"
         incident_id: "{{ incident_id }}"
         comment: "Automation job started. Purpose: DIAGNOSTIC"
         api_token: "{{ api_token }}"
 
     - name: Set Tags - Automation Playbook, Job URL, and Purpose
       bigpanda.incident.add_tag:
+        environment_id: "{{ environment_id }}"
         tag_id: "Automation Playbook"
         tag_value: "{{ playbook_name }} - ID#{{ execution_id }}"
         incident_id: "{{ incident_id }}"
@@ -37,6 +41,7 @@
 
     - name: Set Tags - Automation Job URL
       bigpanda.incident.add_tag:
+        nvironment_id: "{{ environment_id }}"
         tag_id: "Automation Job URL"
         tag_value: "{{ automation_job_url }}"
         incident_id: "{{ incident_id }}"
@@ -44,6 +49,7 @@
 
     - name: Set Tags - Automation Purpose DIAGNOSTIC
       bigpanda.incident.add_tag:
+        environment_id: "{{ environment_id }}"
         tag_id: "Automation Purpose"
         tag_value: "DIAGNOSTIC"
         incident_id: "{{ incident_id }}"
@@ -51,12 +57,14 @@
 
     - name: Mock - Check if the Pods are running
       bigpanda.incident.comment:
+        environment_id: "{{ environment_id }}"
         incident_id: "{{ incident_id }}"
         comment: "Diagnsotic Results: Pods are running but monitoring agent is down"
         api_token: "{{ api_token }}"
 
     - name: Set Tags - Automation Successful
       bigpanda.incident.add_tag:
+        environment_id: "{{ environment_id }}"
         tag_id: "Automation State"
         tag_value: "Successful"
         incident_id: "{{ incident_id }}"

@@ -5,12 +5,14 @@
   tasks:
     - name: Add Comment - Job Started
       bigpanda.incident.comment:
+        environment_id: "{{ environment_id }}"
         incident_id: "{{ incident_id }}"
         comment: "Automation job started. Purpose: REMEDIATION"
         api_token: "{{ api_token }}"
 
     - name: Set Tags - Automation Job URL
       bigpanda.incident.add_tag:
+        environment_id: "{{ environment_id }}"      
         tag_id: "Automation Job URL"
         tag_value: "{{ automation_job_url }}"
         incident_id: "{{ incident_id }}"
@@ -18,6 +20,7 @@
 
     - name: Set Tags - Automation Purpose
       bigpanda.incident.add_tag:
+        environment_id: "{{ environment_id }}"
         tag_id: "Automation Purpose"
         tag_value: "REMEDIATION"
         incident_id: "{{ incident_id }}"
@@ -25,6 +28,7 @@
 
     - name: Set Tags - Automation Playbook and Job URL
       bigpanda.incident.add_tag:
+        environment_id: "{{ environment_id }}"
         tag_id: "Automation Playbook"
         tag_value: "{{ playbook_name }} - ID#{{ execution_id }}"
         incident_id: "{{ incident_id }}"
@@ -32,12 +36,14 @@
 
     - name: Mock - Restart the monitoring agent
       bigpanda.incident.comment:
+        environment_id: "{{ environment_id }}"
         incident_id: "{{ incident_id }}"
         comment: "Restarting the monitoring agent"
         api_token: "{{ api_token }}"
 
     - name: Successful Resolution
       bigpanda.incident.resolve:
+        environment_id: "{{ environment_id }}"
         incident_id: "{{ incident_id }}"
         resolution_comment: "Restarting the monitoring agent"
         api_token: "{{ api_token }}"

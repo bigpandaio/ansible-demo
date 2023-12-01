@@ -4,6 +4,7 @@
   tasks:
     - name: Set Tags - Automation State Successful
       bigpanda.incident.add_tag:
+        environment_id: "{{ environment_id }}"
         tag_id: "Automation State"
         tag_value: "Successful"
         incident_id: "{{ incident_id }}"
@@ -11,6 +12,7 @@
 
     - name: Add Comment - Successful Remediation
       bigpanda.incident.comment:
+        environment_id: "{{ environment_id }}"
         incident_id: "{{ incident_id }}"
         comment: "Automation Successfully Checked and Remediated Incident"
         api_token: "{{ api_token }}"
