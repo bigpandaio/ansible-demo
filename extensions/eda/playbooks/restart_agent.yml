@@ -38,5 +38,5 @@
       bigpanda.incident.comment:
         environment_id: "{{ environment_id }}"
         incident_id: "{{ incident_id }}"
-        comment: "Restarting the monitoring agent"
+        comment: "Automation {{ playbook_name }} ID{{ execution_id }} is currently running and attemping to start the agents to verify operations. Please allow a moment for it to execute."
         api_token: "{{ api_token }}"
