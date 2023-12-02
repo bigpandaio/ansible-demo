@@ -59,7 +59,10 @@
       bigpanda.incident.comment:
         environment_id: "{{ environment_id }}"
         incident_id: "{{ incident_id }}"
-        comment: "Diagnsotic Results: Pods are running but monitoring agent is down"
+        comment: "Diagnsotic Results: Pods are up and RUNNING however expected services are not running on {{ host_1 }} See Output: $ biggy@{{ host_1 }}:/# s6-svstat /var/run/s6/services/agent/
+                  s6-svstat: fatal: unable to read status for /var/run/s6/services/agent/: s6-supervise not running
+                  2021-07-08 09:25:54 UTC | CORE | INFO | (pkg/collector/runner/runner.go:336 in work) | check:elastic | Done running check, next runs will be logged every 500 runs
+                  2021-07-08 09:25:57 UTC | CORE | ERROR | (pkg/collector/runner/runner.go:301 in work) | Error running check prometheus: message: 406 Client Error: Not Acceptable for url: http://10.129.31.28:11000/metrics, traceback: Traceback (most recent call last):n  File/opt/datadog-agent/embedded/lib/python3.8/site-packages/datadog_checks/base/checks/base.py\", line 999, in run\n    self.check(instance)\n  File \/opt/datadog-agent/embedded/lib/python3.8/site-packages/datadog_checks/base/checks/prometheus/base_check.py, line 106, in check\n    scraper.process(\n  File \"/opt/datadog-agent/embedded/lib/python3.8/site-packages/datadog_checks/base/checks/prometheus/mixins.py\", line 408, in process\n    for metric in self.scrape_metrics(endpoint, instance=instance):\n  File \/opt/datadog-agent/embedded/lib/python3.8/site-packages/datadog_checks/base/checks/prometheus/mixins.py, line 370, in scrape_metrics\n    response = self.poll(endpoint, instance=instance)\n  File \"/opt/datadog-agent/embedded/lib/python3.8/site-packages/datadog_checks/base/checks/prometheus/mixins.py, line 592, in poll\n    response.raise_for_status()\n  File \/opt/datadog-agent/embedded/lib/python3.8/site-packages/requests/models.py, line 940, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 406 Client Error: Not Acceptable for url: http://10.129.31.28:11000/metrics\n"
         api_token: "{{ api_token }}"
 
     - name: Set Tags - Automation Successful
