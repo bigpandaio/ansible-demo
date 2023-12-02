@@ -14,5 +14,5 @@
       bigpanda.incident.resolve:
         environment_id: "{{ environment_id }}"
         incident_id: "{{ incident_id }}"
-        resolution_comment: "Automation Successfully Checked and Remediated Incident"
+        resolution_comment: "Automation Successfully Checked and Remediated Incident {{ instance_hosts }}"
         api_token: "{{ api_token }}"
