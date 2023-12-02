@@ -10,6 +10,22 @@
         incident_id: "{{ incident_id }}"
         api_token: "{{ api_token }}"
         
+    - name: Mock - Check if the Pods are running
+      bigpanda.incident.comment:
+        environment_id: "{{ environment_id }}"
+        incident_id: "{{ incident_id }}"
+        comment: "Diagnsotic Results: Agent Up on {{ host_1 }} See Output: biggy@{{ host_1 }}:/# agent status Getting the status from the agent. =============== Agent (v7.29.0)
+                  Status date- UTC (1625736855283)
+                  Agent start- UTC (1625736255859)
+                  Pid- 1
+                  Go Version- go1.15.11
+                  Python Version- 3.8.10
+                  Build arch- amd64
+                  Agent flavor- agent
+                  Check Runners- 4
+                  Log Level INFO"
+        api_token: "{{ api_token }}"
+        
     - name: Successful Resolution
       bigpanda.incident.resolve:
         environment_id: "{{ environment_id }}"
