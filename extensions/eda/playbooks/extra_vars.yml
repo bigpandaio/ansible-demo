@@ -1,0 +1,21 @@
+---
+- name: Print Payload Declared in ExtraVars
+  hosts: localhost
+  gather_facts: no
+
+  tasks:
+    - name: Try incident
+      debug:
+        var: incident
+    - name: Try payload
+      debug:
+        var: payload
+    - name: Try extra_vars
+      debug:
+        var: extra_vars
+    - name: Try payload.incident.active
+      debug:
+        var: payload.incident.active
+    - name: Try incident.active
+      debug:
+        var: incident.active 
