@@ -1,0 +1,46 @@
+# rulebook.yml
+---
+- name: BigPanda Webhook Rulebook 1
+  hosts: all
+  sources:
+    - ansible.eda.webhook:
+        host: 0.0.0.0
+        port: 6001
+  rules:
+    - name: Demo Part 1 - Execute Assign to BigPanda UUID and Check Pods Playbook
+      condition: |
+        event.payload.incident is defined and
+        event.payload.incident.resolved == false and 
+        event.payload.incident.active == true and
+        event.payload.incident.alerts is not search("trace.internal.writer", ignorecase=true) and
+        event.payload.metadata.event_types is search("incident#updated", ignorecase=true)
+      action:
+        run_job_template:
+          name: "Check Pods"
+          organization: Default
+
+    - name: Demo Part 2 - Execute Remediation Steps on the Monitoring Agent
+      condition: |
+        event.payload.incident is defined and 
+        event.payload.incident.resolved == false and 
+        event.payload.incident.active == true and
+        event.payload.incident.alerts is search("trace.internal.writer", ignorecase=true) and
+        event.payload.metadata.event_types is search("incident#updated", ignorecase=true) and
+        event.payload.incident.status != "Warning"
+      action:
+        run_job_template:
+          name: "Restart Agent"
+          organization: Default
+
+    - name: Demo Part 3 - Execute Cleanup Playbook
+      condition: |
+        event.payload.incident is defined and 
+        event.payload.incident.status == "Warning"
+      action:
+        run_job_template:
+          name: "Cleanup"
+          organization: Default
+    - name: Log Event
+      condition: event.meta is defined
+      action:
+        debug:
