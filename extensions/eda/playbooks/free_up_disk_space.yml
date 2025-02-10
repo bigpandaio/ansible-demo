@@ -1,0 +1,63 @@
+---
+- name: Free Up Disk Space
+  hosts: localhost
+  tasks:
+    # Task 1: Verify target disk
+    - name: Verify target disk
+      debug:
+        msg: |
+          Target disk verification on {{ host_name }}:
+          Disk: {{ disk_name }}
+          Mount: /var/log
+          UUID: 456abcde-f123-89ab-cdef-012345678900
+          Status: MOUNTED
+          Filesystem: ext4
+
+    # Task 2: Check disk permissions
+    - name: Verify disk permissions
+      debug:
+        msg: |
+          Permission verification for {{ disk_name }}:
+          Owner: bigpanda:syslog
+          Mode: drwxrwx---
+          ACL: user:bigpanda:rwx
+          Status: WRITE ACCESS CONFIRMED
+
+    # Task 3: Analyze disk content
+    - name: Analyze disk content
+      debug:
+        msg: |
+          Disk content analysis for {{ disk_name }}:
+          Largest directories:
+          45G /var/log/journal
+          25G /var/log/containers
+          15G /var/log/apache2
+          10G /var/log/mysql
+          3G  /var/log/audit
+          
+          Files older than 30 days: 65G
+          Compressed logs: 20G
+          Active logs: 13G
+
+    # Task 4: Perform cleanup
+    - name: Execute cleanup operations
+      debug:
+        msg: |
+          Executing cleanup operations on {{ disk_name }}:
+          1. Removed old journal files (>30 days): -30G
+          2. Compressed historical logs: -25G
+          3. Cleaned temporary files: -13G
+          
+          Total space recovered: 68G
+
+    # Task 5: Generate updated disk space report
+    - name: Generate updated disk space report
+      debug:
+        msg: |
+          Updated Disk Space Analysis for {{ host_name }}:
+          ================================================================================
+          DISK NAME         UUID                                  TOTAL     USED      FREE    USE%    MOUNT
+          /dev/sda1         123e4567-e89b-12d3-a456-426614174000  500G      125G      375G    25%     /
+          /dev/sdb1         987fcdeb-a987-54cd-b321-765432198000  200G       60G      140G    30%     /data
+          {{ disk_name }}   456abcde-f123-89ab-cdef-012345678900  100G       30G       70G    30%     /var/log
+          /dev/sdd1         789fedc-b456-89ab-cdef-012345678900   300G       90G      210G    30%     /backup

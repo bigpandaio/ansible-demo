@@ -1,0 +1,81 @@
+---
+- name: Check Disk Space Status
+  hosts: localhost
+  tasks:
+    # Task 1: Initial connection and host verification
+    - name: Connect to target host
+      debug:
+        msg: |
+          Successfully connected to host: {{ host_name }} via SSH
+          Server uptime: 45 days, 3 hours, 22 minutes
+
+    # Task 2: List all disk devices
+    - name: Retrieve disk devices
+      debug:
+        msg: |
+          Disk devices detected on {{ host_name }}:
+          1. /dev/sda1 - Primary System Disk
+          2. /dev/sdb1 - Data Storage
+          3. /dev/sdc1 - Log Storage
+          4. /dev/sdd1 - Backup Storage
+          
+          Total devices found: 4
+
+    # Task 3: Check disk UUIDs and mount points
+    - name: Retrieve UUID information
+      debug:
+        msg: |
+          UUID Mapping for {{ host_name }}:
+          Device: /dev/sda1
+          UUID: 123e4567-e89b-12d3-a456-426614174000
+          Mount: /
+          Type: ext4
+          
+          Device: /dev/sdb1
+          UUID: 987fcdeb-a987-54cd-b321-765432198000
+          Mount: /data
+          Type: xfs
+          
+          Device: /dev/sdc1
+          UUID: 456abcde-f123-89ab-cdef-012345678900
+          Mount: /var/log
+          Type: ext4
+          
+          Device: /dev/sdd1
+          UUID: 789fedc-b456-89ab-cdef-012345678900
+          Mount: /backup
+          Type: xfs
+
+    # Task 4: Check disk permissions
+    - name: Check disk access permissions
+      debug:
+        msg: |
+          Disk Access Permissions on {{ host_name }}:
+          /dev/sda1 (/)
+          drwxr-xr-x root root
+          Access: READ/WRITE
+          
+          /dev/sdb1 (/data)
+          drwxrwxr-x bigpanda bigpanda
+          Access: READ/WRITE
+            
+          /dev/sdc1 (/var/log)
+          drwxrwx--- bigpanda syslog
+          Access: READ/WRITE
+          
+          /dev/sdd1 (/backup)
+          drwxr-x--- bigpanda backup
+          Access: READ/WRITE
+
+    # Task 5: Generate detailed disk space report
+    - name: Generate disk space report
+      debug:
+        msg: |
+          Disk Space Analysis for {{ host_name }}:
+          ================================================================================
+          DISK NAME      UUID                                  TOTAL     USED      FREE    USE%    MOUNT
+          /dev/sda1      123e4567-e89b-12d3-a456-426614174000  500G     125G       375G    25%     /
+          /dev/sdb1      987fcdeb-a987-54cd-b321-765432198000  200G      60G       140G    30%     /data
+          /dev/sdc1      456abcde-f123-89ab-cdef-012345678900  100G      98G         2G    98%     /var/log
+          /dev/sdd1      789fedc-b456-89ab-cdef-012345678900   300G      90G       210G    30%     /backup
+          
