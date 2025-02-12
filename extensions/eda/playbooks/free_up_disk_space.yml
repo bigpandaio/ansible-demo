@@ -56,8 +56,8 @@
         msg: |
           Updated Disk Space Analysis for {{ host_name }}:
           ================================================================================
-          DISK NAME         UUID                                  TOTAL     USED      FREE    USE%    MOUNT
-          /dev/sda1         123e4567-e89b-12d3-a456-426614174000  500G      125G      375G    25%     /
-          /dev/sdb1         987fcdeb-a987-54cd-b321-765432198000  200G       60G      140G    30%     /data
-          {{ disk_name }}   456abcde-f123-89ab-cdef-012345678900  100G       30G       70G    30%     /var/log
-          /dev/sdd1         789fedc-b456-89ab-cdef-012345678900   300G       90G      210G    30%     /backup
+          DISK NAME      UUID                                  TOTAL     USED      FREE    USE%    MOUNT
+          /dev/sda1      123e4567-e89b-12d3-a456-426614174000  500G      125G      375G    25%     /
+          /dev/sdb1      987fcdeb-a987-54cd-b321-765432198000  200G       60G      140G    30%     /data
+          /dev/sdc1      456abcde-f123-89ab-cdef-012345678900  100G       30G       70G    30%     /var/log
+          /dev/sdd1      789fedc-b456-89ab-cdef-012345678900   300G       90G      210G    30%     /backup
